@@ -1,0 +1,34 @@
+@import './lib/fontawesome/css/all.min.css';
+
+// Required
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+
+// Optional
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "node_modules/bootstrap/scss/grid";
+
+@import "node_modules/bootstrap/scss/utilities/align";
+@import "node_modules/bootstrap/scss/utilities/borders";
+@import "node_modules/bootstrap/scss/utilities/background";
+@import "node_modules/bootstrap/scss/utilities/display";
+@import "node_modules/bootstrap/scss/utilities/flex";
+@import "node_modules/bootstrap/scss/utilities/sizing";
+@import "node_modules/bootstrap/scss/utilities/spacing";
+@import "node_modules/bootstrap/scss/utilities/text";
+
+.c-item {
+    display: flex;
+    align-items: center;
+}
+
+.m-item {
+    text-align: center;
+    height: 70px;
+    width: 70px;
+}

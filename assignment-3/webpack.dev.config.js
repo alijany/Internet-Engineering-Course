@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babelConfig = require('./babel.config.js');
@@ -77,6 +78,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html'
-        })
+        }),
+        new webpack.ProvidePlugin({
+            // $: 'jquery',
+            React: 'react'
+        }),
     ]
 };

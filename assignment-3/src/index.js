@@ -1,42 +1,12 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss';
-import { IconButton, Grid, Typography, Snackbar } from '@material-ui/core';
+import { Grid, Typography, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
-import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import Clear from '@material-ui/icons/Clear';
 import Brightness1 from '@material-ui/icons/Brightness1';
 
-function calculateWinner(gameMap) {
-    let lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (gameMap[a] && gameMap[a] === gameMap[b] && gameMap[a] === gameMap[c])
-            return gameMap[a];
-    }
-}
-
-class GameButton extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { check: false };
-    }
-
-    handle() {
-        let result = this.props.click();
-        result && this.setState({ check: result });
-    }
-
-    render() {
-        return (
-            <IconButton color="primary" onClick={() => { this.handle() }}>
-                {this.state.check || <CheckBoxOutlineBlank fontSize="large" />}
-            </IconButton>
-        );
-    }
-}
-
+import GameButton from './components/GameButton';
+import calculateWinner from './calculateWinner';
 
 class App extends React.Component {
 
@@ -50,16 +20,20 @@ class App extends React.Component {
     }
 
     kernel(index) {
+        // return if button was selected or game over 
         if (this.state.gameMap[index] || this.state.winner)
             return;
+        // clone current state
         let gameMap = this.state.gameMap.slice();
         gameMap[index] = this.state.xIsNext ? 'X' : 'O';
+        // calculate winner
         let winner = calculateWinner(gameMap);
         this.setState({
             gameMap: gameMap,
             xIsNext: !this.state.xIsNext,
             winner : winner
         });
+        // return x or o icon
         return gameMap[index] == 'O' ? <Brightness1 fontSize="large" /> : <Clear fontSize="large" color="secondary" />;
     }
 

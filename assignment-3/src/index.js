@@ -15,7 +15,7 @@ class App extends React.Component {
         this.state = {
             gameMap: Array(9).fill(null),
             x: true,
-            winner : false
+            winner: false
         };
     }
 
@@ -31,7 +31,7 @@ class App extends React.Component {
         this.setState({
             gameMap: gameMap,
             xIsNext: !this.state.xIsNext,
-            winner : winner
+            winner: winner
         });
         // return x or o icon
         return gameMap[index] == 'O' ? <Brightness1 fontSize="large" /> : <Clear fontSize="large" color="secondary" />;
@@ -41,7 +41,9 @@ class App extends React.Component {
         return (
             <Grid container alignItems="center" justify="center" direction="column" style={{ minHeight: "100vh" }}>
 
-                <Typography variant="h2" component="h2" color="primary" style={{ marginBottom: "3rem" }}>
+                <Typography variant="h2" component="h2"
+                    color={this.state.xIsNext ? "secondary" : "primary"}
+                    style={{ marginBottom: "3rem" }}>
                     Tik Tak Teo
                 </Typography>
 
@@ -49,9 +51,9 @@ class App extends React.Component {
                     {[...Array(9)].map((val, index) => <GameButton click={() => this.kernel(index)} key={index} />)}
                 </div>
 
-                <Snackbar open={Boolean(this.state.winner)} autoHideDuration={6000} onClose={()=>{location.reload();}}>
-                    <MuiAlert elevation={6} variant="filled" onClose={()=>{location.reload();}} severity="success">
-                        {this.state.winner} won the game !  
+                <Snackbar open={Boolean(this.state.winner)} autoHideDuration={6000} onClose={() => { location.reload(); }}>
+                    <MuiAlert elevation={6} variant="filled" onClose={() => { location.reload(); }} severity="success">
+                        {this.state.winner} won the game !
                     </MuiAlert>
                 </Snackbar>
 

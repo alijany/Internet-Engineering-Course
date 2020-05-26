@@ -16,7 +16,7 @@ class GameButton extends React.Component {
 
     render() {
         return (
-            <IconButton color="primary" onClick={() => { this.handle() }}>
+            <IconButton id={this.props.id} color="primary" onClick={() => { this.handle() }}>
                 {this.state.check || <CheckBoxOutlineBlank fontSize="large" />}
             </IconButton>
         );
